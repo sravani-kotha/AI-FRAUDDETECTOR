@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fraud Detector | Risk Console</title>
+    <link rel="stylesheet" href="/frontend/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">REAL-TIME RISK CONSOLE</p>
+          <h1>Fraud detector</h1>
+          <p class="subtitle">Score a checkout transaction before payment is authorized.</p>
+        </div>
+        <div id="health" class="health" aria-live="polite"><span class="health-dot"></span> Checking model</div>
+      </header>
+
+      <section class="workspace">
+        <form id="score-form" class="panel form-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">TRANSACTION INPUT</p><h2>Inspect a payment</h2></div>
+            <button id="load-example" class="quiet-button" type="button">Load high-risk example</button>
+          </div>
+          <div class="field-grid">
+            <label>Order value ratio <span>customer average</span><input name="order_value_ratio" type="number" min="0" step="0.1" value="1.2" required /></label>
+            <label>Account age <span>days</span><input name="account_age_days" type="number" min="0" step="1" value="180" required /></label>
+            <label>Transactions last hour<input name="txns_last_hour" type="number" min="0" step="1" value="1" required /></label>
+            <label>Hour of day <span>0 to 23</span><input name="hour_of_day" type="number" min="0" max="23" step="1" value="14" required /></label>
+          </div>
+          <fieldset>
+            <legend>Signal checks</legend>
+            <label class="toggle"><input name="billing_shipping_mismatch" type="checkbox" /><span>Billing and shipping mismatch</span><b>NO</b></label>
+            <label class="toggle"><input name="vpn_detected" type="checkbox" /><span>VPN or proxy detected</span><b>NO</b></label>
+            <label class="toggle"><input name="new_device" type="checkbox" /><span>Unrecognized device</span><b>NO</b></label>
+          </fieldset>
+          <button class="score-button" type="submit"><span>Score transaction</span><span aria-hidden="true">&#8594;</span></button>
+          <p id="error" class="error" role="alert"></p>
+        </form>
+
+        <section id="result" class="panel result-panel empty" aria-live="polite">
+          <div class="result-placeholder"><span class="placeholder-mark">+</span><h2>Awaiting transaction</h2><p>Submit the signals on the left to see the model decision and its reason codes.</p></div>
+        </section>
+      </section>
+      <footer><span>MODEL VERSION <strong id="model-version">--</strong></span><span>API <strong>/score</strong></span></footer>
+    </main>
+    <script src="/frontend/app.js"></script>
+  </body>
+</html>
