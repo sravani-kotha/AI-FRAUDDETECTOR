@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Fraud detector — starter
 
 This is Phase 1–4 of the AI Risk Manager roadmap: feature pipeline,
@@ -34,9 +33,7 @@ pytest -q
 uvicorn src.api:app --reload --port 8000
 ```
 
-Open http://localhost:8000 in your browser to use the risk dashboard. It is served directly by the FastAPI backend, so no separate frontend server is needed. Use **Load high-risk example** for a quick test, or enter your own transaction signals and select **Score transaction**.
-
-You can also score a transaction from the command line:
+Then score a transaction:
 
 ```bash
 curl -X POST http://localhost:8000/score -H "Content-Type: application/json" -d '{
@@ -130,7 +127,3 @@ architecture in the pitch.
 Not included here (next to build): the chargeback responder's case
 builder + Claude-drafted letters (Phase 3), the analyst review queue and
 drift monitoring (Phase 5).
-=======
-# AI-FRAUDDETECTOR
-HACKTHON PROJECT
->>>>>>> e407a67f033c33cbbf3ec806670005cb71ffcdcc
